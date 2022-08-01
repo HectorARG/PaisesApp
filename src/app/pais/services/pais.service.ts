@@ -17,4 +17,12 @@ export class PaisService {
     const url = `${ this.apiURL }/name/${ termino }`;
     return this.http.get<BusquedaPais[]>( url );
   }
+
+  buscarCapital(termino: string): Observable<BusquedaPais[]> {
+    const urlCapital = `${ this.apiURL }/capital/${ termino }`;
+    console.log(urlCapital);
+
+    return this.http.get<BusquedaPais[]>( urlCapital );
+
+  }
 }
