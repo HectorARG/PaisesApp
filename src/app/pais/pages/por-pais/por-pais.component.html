@@ -1,1 +1,47 @@
-<p>por-pais works!</p>
+<h2>Por Pais</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="buscar()" autocomplete="off">
+      <input type="text"
+             name="termino"
+             class="form-control"
+             [(ngModel)]="terminoB"
+             placeholder="Buscar Pais...">
+    </form>
+  </div>
+</div>
+
+<hr>
+
+<div *ngIf="error" class="alert alert-danger">
+  No se encontro el pais
+</div>
+
+<div *ngIf="!error" class="row">
+  <div class="col">
+    <table *ngIf="paises.length > 0" class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bandera</th>
+          <th>Nombre</th>
+          <th>Poblacion</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pais of paises; let i = index">
+          <th>{{ i + 1 }}</th>
+          <th><img [src]="pais.flag" [alt]="pais.name" width="65px" alt="65px"></th>
+          <th>{{ pais.name}}</th>
+          <th>{{ pais.population | number}}</th>
+          <th>
+            <a [routerLink]="['/pais', pais.alpha2Code]" >Ver...</a>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
