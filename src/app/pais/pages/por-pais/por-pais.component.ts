@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BusquedaPais } from '../../interfaces/pais.interfaces';
 import { PaisService } from '../../services/pais.service';
 
@@ -14,8 +14,9 @@ export class PorPaisComponent {
   error: boolean = false;
   paises: BusquedaPais[] = [];
 
-  buscar(): void{
+  buscar( termino: string ): void{
     this.error = false;
+    this.terminoB = termino;
     if(this.terminoB.trim().length !== 0){
       this.paisService.buscarPais(this.terminoB).subscribe(resp =>{
         console.log(resp);
@@ -28,5 +29,9 @@ export class PorPaisComponent {
       console.log('Debes escribir algo');
     }
 
+  }
+
+  sugerencias(sugerencia: string){
+    this.error = false;
   }
 }
