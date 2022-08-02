@@ -25,4 +25,12 @@ export class PaisService {
     return this.http.get<BusquedaPais[]>( urlCapital );
 
   }
+
+  detallesPais(id: string): Observable<BusquedaPais> {
+    const urlDetallesPais = `${ this.apiURL }/alpha/${ id }`;
+    console.log(urlDetallesPais);
+
+    return this.http.get<BusquedaPais>( urlDetallesPais );
+
+  }
 }
