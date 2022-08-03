@@ -8,29 +8,28 @@ import { BusquedaPais } from '../interfaces/pais.interfaces';
 })
 export class PaisService {
 
-  private apiURL: string = 'https://restcountries.com/v2'
+  private apiURL: string = 'https://restcountries.com/v2';
+  private apiURLRegion: string = 'https://restcountries.com/v2/regionalbloc'
 
   constructor( private http: HttpClient ) { }
 
   buscarPais(termino: string): Observable<BusquedaPais[]>{
-
     const url = `${ this.apiURL }/name/${ termino }`;
     return this.http.get<BusquedaPais[]>( url );
   }
 
   buscarCapital(termino: string): Observable<BusquedaPais[]> {
     const urlCapital = `${ this.apiURL }/capital/${ termino }`;
-    console.log(urlCapital);
-
     return this.http.get<BusquedaPais[]>( urlCapital );
+  }
 
+  buscarRegion(termino: string): Observable<BusquedaPais[]> {
+    const urlregion = `${ this.apiURLRegion }/${ termino }`;
+    return this.http.get<BusquedaPais[]>( urlregion );
   }
 
   detallesPais(id: string): Observable<BusquedaPais> {
     const urlDetallesPais = `${ this.apiURL }/alpha/${ id }`;
-    console.log(urlDetallesPais);
-
     return this.http.get<BusquedaPais>( urlDetallesPais );
-
   }
 }
