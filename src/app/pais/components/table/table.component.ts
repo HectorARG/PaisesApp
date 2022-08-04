@@ -9,7 +9,7 @@ export class TableComponent implements OnInit {
 
   @Input() paises: BusquedaPais[] = [];
   @Input() capitales: BusquedaPais[] = [];
-
+  @Input() region: BusquedaPais[] = [];
 
   constructor() { }
 
