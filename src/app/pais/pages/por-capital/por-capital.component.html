@@ -4,6 +4,7 @@
 <div class="row">
   <div class="col">
     <app-pais-input
+        class="animate__animated animate__bounce"
         (onEnter)="buscar( $event )"
         (onDebounce)="sugerencias( $event )"
         placeholder="Buscar Capital..."
@@ -19,6 +20,6 @@
 
 <div *ngIf="!error" class="row">
   <div class="col">
-    <app-table [paises]="capital"></app-table>
+    <app-table class="animate__animated animate__bounce" [paises]="capital"></app-table>
   </div>
 </div>

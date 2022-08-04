@@ -13,6 +13,7 @@ export class PorPaisComponent {
   terminoB: string = ''
   error: boolean = false;
   paises: BusquedaPais[] = [];
+  paisesSujeridos: BusquedaPais[] = [];
 
   buscar( termino: string ): void{
     this.error = false;
@@ -33,5 +34,13 @@ export class PorPaisComponent {
 
   sugerencias(sugerencia: string){
     this.error = false;
+
+    if( sugerencia.trim().length === 0 ){ this.paisesSujeridos = [] }
+
+    this.paisService.buscarPais( sugerencia ).subscribe( pais => {
+      this.paisesSujeridos = pais.splice(0,3),
+      (_err: any) => this.paisesSujeridos = []
+
+    })
   }
 }

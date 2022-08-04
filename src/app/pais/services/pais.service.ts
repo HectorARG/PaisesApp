@@ -10,21 +10,22 @@ export class PaisService {
 
   private apiURL: string = 'https://restcountries.com/v2';
   private apiURLRegion: string = 'https://restcountries.com/v2/regionalbloc'
+  private urlFilter: string = 'fields=name,capital,alpha2Code,alpha3Code,flag,population';
 
   constructor( private http: HttpClient ) { }
 
   buscarPais(termino: string): Observable<BusquedaPais[]>{
-    const url = `${ this.apiURL }/name/${ termino }`;
+    const url = `${ this.apiURL }/name/${ termino }?${ this.urlFilter }`;
     return this.http.get<BusquedaPais[]>( url );
   }
 
   buscarCapital(termino: string): Observable<BusquedaPais[]> {
-    const urlCapital = `${ this.apiURL }/capital/${ termino }`;
+    const urlCapital = `${ this.apiURL }/capital/${ termino }?${ this.urlFilter }`;
     return this.http.get<BusquedaPais[]>( urlCapital );
   }
 
   buscarRegion(termino: string): Observable<BusquedaPais[]> {
-    const urlregion = `${ this.apiURLRegion }/${ termino }`;
+    const urlregion = `${ this.apiURLRegion }/${ termino }?${ this.urlFilter }`;
     return this.http.get<BusquedaPais[]>( urlregion );
   }
 
